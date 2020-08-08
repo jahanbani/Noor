@@ -13,6 +13,13 @@ import ipdb
 import pandas as pd
 
 
+def highlight_max(df):
+    """
+    highlight the maximum in a Series yellow.
+    """
+    return ["background-color: black"] * len(df)
+
+
 def clean_data(df):
     df = df.replace({"الف": "A", "ب": "B", "ج": "C", "د": "D"})
     phonecol = [col for col in df.columns if col.startswith("شماره تلفن همراه")]
@@ -69,6 +76,7 @@ def main():
         join="outer",
         axis=1,
     )
+    anss.to_excel("alldatabeforegrading.xlsx")
     anss = anss.iloc[:, ~anss.columns.duplicated()]
     anssq = anss.drop(columns=["City", "Country", "Name"])
     neq = len(anssq.columns)
@@ -133,7 +141,8 @@ def main():
             "Phone",
             "Phonemd",
         ]
-    ].to_excel("mainfile.xlsx", index=True)
+    ].style.apply(highlight_max).to_excel("mainfile.xlsx", index=True)
+
     print(df.shape)
 
     df[

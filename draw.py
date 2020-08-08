@@ -1,9 +1,8 @@
 """
-
+draw
 """
 import sys
 import time
-import tkinter as tk
 
 import pandas as pd
 
