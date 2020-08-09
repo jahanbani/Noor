@@ -108,6 +108,7 @@ def main():
     # Also, in the draw we can have 0
     corans["cumsum"] = corans["point"].cumsum() - 1
 
+    corans.to_excel("beforepool.xlsx")
     # creating an empty df to merge on
     empdf = pd.DataFrame(data={}, index=range(int(corans["cumsum"].max() + 1)))
     df = pd.merge(
